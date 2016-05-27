@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
+  <test name="Test(failed)">
+    <classes>
+      <class name="com.mindtree.essence.testResults.EssencePOCMain">
+        <methods>
+          <include name="setUp"/>
+          <include name="tearDown"/>
+          <include name="twitterNavigation"/>
+          <include name="updateLogAfterEachTest"/>
+          <include name="writeModuleHTMLLog"/>
+        </methods>
+      </class> <!-- com.mindtree.essence.testResults.EssencePOCMain -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

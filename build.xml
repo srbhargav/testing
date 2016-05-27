@@ -1,0 +1,34 @@
+<project name="essencePOC_TestNG" default="runEssencePOC_TestNG" basedir=".">
+	<property name="build.dir" value="${basedir}/build" />
+	<property name="external.jars" value=".\lib" />
+	<!-- <property name="selenium.jars" value=".\selenium" /> -->
+	<property name="src.dir" value="${basedir}/src/test/java" />
+	<target name="clean">
+		<echo message="deleting existing build directory" />
+		<delete dir="${build.dir}" />
+	</target>
+	<target name="setClassPath">
+		<path id="classpath_jars">
+			<pathelement path="${basedir}/" />
+			<fileset dir="${external.jars}" includes="*.jar" />
+			<!-- <fileset dir="${selenium.jars}" includes="*.jar" /> -->
+		</path>
+		<pathconvert pathsep=";" property="test.classpath" refid="classpath_jars" />
+		<echo message="classpath:${test.classpath}" />
+	</target>
+	<target name="loadTestNG" depends="setClassPath">
+		<taskdef resource="testngtasks" classpath="${test.classpath}" />
+	</target>
+	<target name="compileEssencePOC_TestNG" depends="clean,setClassPath,loadTestNG">
+		<mkdir dir="${build.dir}" />
+		<echo message="compiling.........." />
+		<javac destdir="${build.dir}" srcdir="${src.dir}" classpath="${test.classpath}">
+		</javac>
+	</target>
+	<target name="runEssencePOC_TestNG" depends="compileEssencePOC_TestNG">
+		<echo message="Running.........." />
+		<testng classpath="${test.classpath};${build.dir}">
+			<xmlfileset dir="${basedir}" includes="testng.xml" />
+		</testng>
+	</target>
+</project>
